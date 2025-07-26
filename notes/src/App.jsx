@@ -8,9 +8,15 @@ function App() {
 		<>
 			<div className="wrapper">
 				<div className="side-bar">
-					<h1>My Notes App</h1>
-					<AddNoteButton />
-					<NoteList />
+					<div className="app-name">
+						<h1>My Notes App</h1>
+					</div>
+					<div className="add-note-button">
+						<AddNoteButton />
+					</div>
+					<div className="note-list">
+						<NoteList />
+					</div>
 				</div>
 				<div className="main">
 					<NoteForm />

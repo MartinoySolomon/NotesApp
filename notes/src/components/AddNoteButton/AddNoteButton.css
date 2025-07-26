@@ -1,14 +1,18 @@
-button{
-    background-color: var(--button-color);
-    border:none;
-    color:#ffffff;
-    border-radius: 10px;
-    padding:10px 20px;
-    font-size: 0.875rem;
-    font-weight: 500;
+button {
+	background-color: var(--button-color);
+	border: none;
+	color: #ffffff;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 0.875rem;
+	font-weight: 500;
+	width: 8.5rem;
+    height: 2.5rem;
+    align-self: self-end;
     display: flex;
-    img{
-        margin-right: 10px;
-        width:0.875rem;
-    }
+    align-items: center;
+	img {
+		margin-right: 10px;
+		width: 0.875rem;
+	}
 }
