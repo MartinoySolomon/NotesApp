@@ -10,7 +10,7 @@ This is your ReactJS project. Ensure that each milestone is submitted to your Gi
 
 - When clicking "add note" a new note will be created with an empty state.
 - Note should be saved to local storage on "blur" event.
-- When clicking on one of the notes the information of that note should be dispolayed on the form, and should be saved on blur.
+- When clicking on one of the notes the information of that note should be displayed on the form, and should be saved on blur.
 - After saving show the "Saved!" indication.
 - The note name on the list should be the title.
 - Build the Note app responsive UI, try and break down the UI to small components as much as you can.
