@@ -1,8 +1,8 @@
 import './AddNoteButton.css'
 
-export default function AddNoteButton() {
+export default function AddNoteButton({handleAddNote}) {
 	return <>
-    <button type="button"><img src="src/assets/plus.svg"/>Add Note</button>
+    <button type="button" onClick={handleAddNote}><img src="src/assets/plus.svg"/>Add Note</button>
     
     </>;
 }

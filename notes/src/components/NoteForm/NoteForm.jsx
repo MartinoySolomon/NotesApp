@@ -1,6 +1,29 @@
+import { useState } from "react";
 import "./NoteForm.css";
+import { useEffect } from "react";
 
-export default function NoteForm() {
+export default function NoteForm({
+	activeNoteId,
+	activeNote,
+	handleUpdateNote,
+}) {
+	const [formData, setFormData] = useState({ title: "", content: "" });
+
+	useEffect(() => {
+		if (activeNote)
+			setFormData({ title: activeNote.title, content: activeNote.content });
+		else setFormData({ title: "", content: "" });
+	}, [activeNoteId]);
+
+	function onInputChange(e) {
+		const { name, value } = e.target;
+		setFormData((prev) => ({ ...prev, [name]: value }));
+	}
+	function onBlur() {
+		if (activeNote) {
+			handleUpdateNote({ ...formData, id: activeNote.id });
+		}
+	}
 	return (
 		<>
 			<div className="note-form">
@@ -9,15 +32,23 @@ export default function NoteForm() {
 					<input
 						type="text"
 						id="title"
+						name="title"
 						placeholder="Your title here"
+						value={formData.title}
+						onChange={onInputChange}
+						onBlur={onBlur}
 					/>
 				</div>
 				<div className="note-content">
 					<label htmlFor="content">Note</label>
 
 					<textarea
-                        id="content"
+						id="content"
+						name="content"
 						placeholder="Your content here"
+						value={formData.content}
+						onChange={onInputChange}
+						onBlur={onBlur}
 					/>
 				</div>
 			</div>

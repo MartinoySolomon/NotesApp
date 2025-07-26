@@ -1,14 +1,24 @@
 import "./NoteList.css";
 import NoteItem from "../NoteItem/NoteItem";
 
-export default function NoteList() {
+export default function NoteList({
+	notes,
+	setNotes,
+	activeNoteId,
+	setActiveNoteId,
+}) {
 	return (
 		<>
-					<NoteItem />
-					<NoteItem />
-					<NoteItem />
-					<NoteItem />
-				
+			{notes.map((note) => {
+				return (
+					<NoteItem
+						key={note.id}
+						note={note}
+						activeNoteId={activeNoteId}
+						setActiveNoteId={setActiveNoteId}
+					/>
+				);
+			})}
 		</>
 	);
 }
