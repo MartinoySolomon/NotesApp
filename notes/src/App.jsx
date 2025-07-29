@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { v4 as uuid } from "uuid";
-
 import AddNoteButton from "./components/AddNoteButton/AddNoteButton";
 import NoteForm from "./components/NoteForm/NoteForm";
 import NoteList from "./components/NoteList/NoteList";
@@ -9,6 +8,7 @@ import NoteList from "./components/NoteList/NoteList";
 function App() {
 	const [notes, setNotes] = useState(() => fetchNotesFromStorage());
 	const [activeNoteId, setActiveNoteId] = useState(null);
+	const [isSaved, setIsSaved] = useState(false);
 
 	function fetchNotesFromStorage() {
 		const storedNotes = localStorage.getItem("notes");
@@ -24,7 +24,7 @@ function App() {
 	function handleAddNote() {
 		const newNote = {
 			id: uuid(),
-			title: "new",
+			title: "",
 			content: "",
 		};
 		setNotes((prev) => [...prev, newNote]);
@@ -41,6 +41,7 @@ function App() {
 			return note;
 		});
 		setNotes(updateNotesArray);
+		setIsSaved(true);
 	}
 	useEffect(() => {
 		saveNotesToStorage();
@@ -60,7 +61,6 @@ function App() {
 					<div className="note-list">
 						<NoteList
 							notes={notes}
-							setNotes={setNotes}
 							activeNoteId={activeNoteId}
 							setActiveNoteId={setActiveNoteId}
 						/>
@@ -68,12 +68,11 @@ function App() {
 				</div>
 				<div className="main">
 					<NoteForm
-						notes={notes}
-						setNotes={setNotes}
 						activeNoteId={activeNoteId}
-						setActiveNoteId={setActiveNoteId}
 						activeNote={getActiveNote()}
 						handleUpdateNote={handleUpdateNote}
+						isSaved={isSaved}
+						setIsSaved={setIsSaved}
 					/>
 				</div>
 			</div>

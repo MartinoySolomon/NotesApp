@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./NoteForm.css";
 import { useEffect } from "react";
+import SavedNotification from "../SavedNotifacation/SavedNotification";
 
 export default function NoteForm({
 	activeNoteId,
 	activeNote,
 	handleUpdateNote,
+	isSaved,
+	setIsSaved,
 }) {
 	const [formData, setFormData] = useState({ title: "", content: "" });
 
@@ -26,7 +29,11 @@ export default function NoteForm({
 	}
 	return (
 		<>
-			<div className="note-form">
+			<SavedNotification
+				isSaved={isSaved}
+				setIsSaved={setIsSaved}
+			/>
+			<div className={"note-form"}>
 				<div className="note-title">
 					<label htmlFor="title">Title</label>
 					<input
@@ -37,6 +44,7 @@ export default function NoteForm({
 						value={formData.title}
 						onChange={onInputChange}
 						onBlur={onBlur}
+						disabled={!activeNote}
 					/>
 				</div>
 				<div className="note-content">
@@ -49,6 +57,7 @@ export default function NoteForm({
 						value={formData.content}
 						onChange={onInputChange}
 						onBlur={onBlur}
+						disabled={!activeNote}
 					/>
 				</div>
 			</div>

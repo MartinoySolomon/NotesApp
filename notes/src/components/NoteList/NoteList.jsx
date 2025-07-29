@@ -1,9 +1,9 @@
 import "./NoteList.css";
 import NoteItem from "../NoteItem/NoteItem";
+import { Link } from "react-router";
 
 export default function NoteList({
 	notes,
-	setNotes,
 	activeNoteId,
 	setActiveNoteId,
 }) {

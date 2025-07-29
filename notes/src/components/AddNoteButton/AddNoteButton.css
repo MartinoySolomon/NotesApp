@@ -7,10 +7,12 @@ button {
 	font-size: 0.875rem;
 	font-weight: 500;
 	width: 8.5rem;
-    height: 2.5rem;
-    align-self: self-end;
-    display: flex;
-    align-items: center;
+	height: 2.5rem;
+	align-self: self-end;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+
 	img {
 		margin-right: 10px;
 		width: 0.875rem;

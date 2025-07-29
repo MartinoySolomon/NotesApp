@@ -6,24 +6,28 @@
 		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
-        align-items: center;
+		align-items: center;
 		width: 23%;
 		height: 100%;
 		background-color: var(--background-color);
 		box-shadow: 1px 0px 9px 1px rgba(0, 0, 0, 0.25);
 		.app-name {
-            height: 12%;
-            font-size: 1.5rem;
+			margin-bottom: 1rem;
+			h1 {
+				font-size: 1.5rem;
+			}
 		}
 		.add-note-button {
-            height: 10%;
 			align-self: self-end;
-            font-weight: 700;
+			font-weight: 700;
+			margin: 2rem 0;
 		}
 		.note-list {
 			display: flex;
 			flex-direction: column;
-            width: 100%;
+			width: 100%;
+			overflow-y: auto;
+			overflow-x: hidden;
 		}
 	}
 	.main {
@@ -34,3 +38,70 @@
 		align-items: start;
 	}
 }
+
+/* 
+@media (min-width: 300px) {
+	body {
+        background-color: rgb(8, 99, 129);
+		.box {
+			background-color: blue;
+		}
+	}
+}
+
+@media (min-width: 500px) {
+	body {
+        background-color: rgb(14, 163, 213);
+		.box {
+			background-color: purple;
+		}
+	}
+}
+@media (max-height: 400px) {
+	body {
+        background-color: rgb(12, 135, 175);
+		.box {
+			width: 200px;
+		}
+	} */
+/* large smartphones and tablets */
+/* 
+@media (min-width:480px){
+    body {
+        background-color: #ffffff;
+        .mobile , .laptop , .desktop{
+            display:none;
+        }
+        .tablet{
+            display: block;
+        }
+	}
+     */
+
+/* landscape tablets and laptops */
+/* 
+@media (min-width:768px){
+    body {
+        background-color: rgb(10, 116, 151);
+        .mobile , .tablet , .desktop{
+            display:none;
+        }
+        .laptop{
+            display: block;
+        }
+	}
+     */
+
+/* desktop */
+
+/* @media (min-width:1279px){
+	body {
+        background-color: rgb(6, 84, 110);
+        .mobile , .tablet , .laptop{
+            display:none;
+        }
+        .desktop{
+            display: block;
+        }
+	}
+} */
