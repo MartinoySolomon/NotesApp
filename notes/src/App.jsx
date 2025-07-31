@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { v4 as uuid } from "uuid";
-import AddNoteButton from "./components/AddNoteButton/AddNoteButton";
+import "./App.css";
+
+
 import NoteForm from "./components/NoteForm/NoteForm";
-import NoteList from "./components/NoteList/NoteList";
+import Home from "./components/Home/Home";
 
 function App() {
 	const [notes, setNotes] = useState(() => fetchNotesFromStorage());
@@ -43,39 +44,26 @@ function App() {
 		setNotes(updateNotesArray);
 		setIsSaved(true);
 	}
+
 	useEffect(() => {
 		saveNotesToStorage();
-		console.log(notes);
 	}, [notes]);
 
 	return (
 		<>
-			<div className="wrapper">
-				<div className="side-bar">
-					<div className="app-name">
-						<h1>My Notes App</h1>
-					</div>
-					<div className="add-note-button">
-						<AddNoteButton handleAddNote={handleAddNote} />
-					</div>
-					<div className="note-list">
-						<NoteList
-							notes={notes}
-							activeNoteId={activeNoteId}
-							setActiveNoteId={setActiveNoteId}
-						/>
-					</div>
-				</div>
-				<div className="main">
-					<NoteForm
-						activeNoteId={activeNoteId}
-						activeNote={getActiveNote()}
-						handleUpdateNote={handleUpdateNote}
-						isSaved={isSaved}
-						setIsSaved={setIsSaved}
-					/>
-				</div>
-			</div>
+				<Home
+					notes={notes}
+					handleAddNote={handleAddNote}
+					activeNoteId={activeNoteId}
+					setActiveNoteId={setActiveNoteId}
+				/>
+				<NoteForm
+					activeNoteId={activeNoteId}
+					activeNote={getActiveNote()}
+					handleUpdateNote={handleUpdateNote}
+					isSaved={isSaved}
+					setIsSaved={setIsSaved}
+				/>
 		</>
 	);
 }

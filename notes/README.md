@@ -11,7 +11,7 @@ This is your ReactJS project. Ensure that each milestone is submitted to your Gi
 V When clicking "add note" a new note will be created with an empty state.
 V Note should be saved to local storage on "blur" event.
 V When clicking on one of the notes the information of that note should be displayed on the form, and should be saved on blur.
-- After saving show the "Saved!" indication.
+V After saving show the "Saved!" indication.
 V The note name on the list should be the title.
 - Build the Note app responsive UI, try and break down the UI to small components as much as you can.
 - Build the routing, make sure to notice the difference between the mobile version and the desktop version.

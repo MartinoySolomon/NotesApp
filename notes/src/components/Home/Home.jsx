@@ -1,12 +1,9 @@
 import AddNoteButton from "../AddNoteButton/AddNoteButton";
 import NoteList from "../NoteList/NoteList";
+import './Home.css'
 
-export default function Home(
-	handleAddNote,
-	notes,
-	activeNoteId,
-	setActiveNoteId
-) {
+export default function Home({notes, handleAddNote, activeNoteId, setActiveNoteId}) {
+
 	return (
 		<>
 			<div className="side-bar">

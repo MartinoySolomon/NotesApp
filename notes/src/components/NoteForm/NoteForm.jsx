@@ -29,36 +29,38 @@ export default function NoteForm({
 	}
 	return (
 		<>
-			<SavedNotification
-				isSaved={isSaved}
-				setIsSaved={setIsSaved}
-			/>
-			<div className={"note-form"}>
-				<div className="note-title">
-					<label htmlFor="title">Title</label>
-					<input
-						type="text"
-						id="title"
-						name="title"
-						placeholder="Your title here"
-						value={formData.title}
-						onChange={onInputChange}
-						onBlur={onBlur}
-						disabled={!activeNote}
-					/>
-				</div>
-				<div className="note-content">
-					<label htmlFor="content">Note</label>
+			<div className="main">
+				<SavedNotification
+					isSaved={isSaved}
+					setIsSaved={setIsSaved}
+				/>
+				<div className={"note-form"}>
+					<div className="note-title">
+						<label htmlFor="title">Title</label>
+						<input
+							type="text"
+							id="title"
+							name="title"
+							placeholder="Your title here"
+							value={formData.title}
+							onChange={onInputChange}
+							onBlur={onBlur}
+							disabled={!activeNote}
+						/>
+					</div>
+					<div className="note-content">
+						<label htmlFor="content">Note</label>
 
-					<textarea
-						id="content"
-						name="content"
-						placeholder="Your content here"
-						value={formData.content}
-						onChange={onInputChange}
-						onBlur={onBlur}
-						disabled={!activeNote}
-					/>
+						<textarea
+							id="content"
+							name="content"
+							placeholder="Your content here"
+							value={formData.content}
+							onChange={onInputChange}
+							onBlur={onBlur}
+							disabled={!activeNote}
+						/>
+					</div>
 				</div>
 			</div>
 		</>
