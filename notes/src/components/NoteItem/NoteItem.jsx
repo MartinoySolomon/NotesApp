@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./NoteItem.css";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
 import { useNavigate } from "react-router";
+import rightArrowIcon from "../../assets/arrow.svg";
 
 export default function NoteItem({ note, activeNoteId, setActiveNoteId }) {
 	const isDesktop = useContext(WindowContext);
@@ -23,7 +24,8 @@ export default function NoteItem({ note, activeNoteId, setActiveNoteId }) {
 										}}>
 				<div className="note-title">{note.title|| 'New Note'}</div>
 				<div className="arrow-icon">
-					<img src="src/assets/arrow.svg" />
+					{!isDesktop &&  <span className="edit-mobile-span">Edit</span>}
+					<img src={rightArrowIcon} />
 				</div>
 			</div>
 		</>

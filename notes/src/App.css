@@ -40,7 +40,7 @@
 
 /* landscape tablets and laptops */
 /* 
-@media (min-width:768px){
+@media (min-width:780px){
     body {
         background-color: rgb(10, 116, 151);
         .mobile , .tablet , .desktop{

@@ -1,14 +1,25 @@
 .note-item {
 	display: flex;
 	justify-content: space-between;
-    align-items: center;
+	align-items: center;
 	margin: 1rem;
 	font-size: 1rem;
 	font-weight: 500;
 	height: 2rem;
 	cursor: pointer;
-    transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 .active {
 	transform: scale(110%);
+}
+@media (max-width: 780px) {
+	.note-item {
+		.edit-mobile-span {
+			color: #6d717f;
+			margin-right: 1rem;
+		}
+	}
+	.active {
+		transform: none;
+	}
 }

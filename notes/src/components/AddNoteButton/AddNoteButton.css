@@ -18,3 +18,12 @@ button {
 		width: 0.875rem;
 	}
 }
+@media (max-width: 780px) {
+	button {
+		height: 3rem;
+		width: 10rem;
+		img {
+		margin-right: 20px;
+		}
+	}
+}

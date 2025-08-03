@@ -5,10 +5,7 @@
 	justify-content: center;
 	align-items: start;
 
-	.left-arrow-icon{
-		/* width: 1rem;
-		height: 1rem;
-		margin: 1rem; */
+	.left-arrow-icon {
 		cursor: pointer;
 	}
 	.note-form {
@@ -53,6 +50,41 @@
 			textarea {
 				resize: none;
 				height: 90%;
+			}
+		}
+	}
+}
+
+@media (max-width: 780px) {
+	.main {
+		width: 100%;
+		.note-form {
+			box-shadow: none;
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			padding: 0;
+			.app-name {
+				width: 100%;
+				text-align: center;
+				padding: 1rem;
+				border-bottom: 1px solid #4e61f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				h1 {
+					font-size: 1.5rem;
+				}
+				.left-arrow-icon {
+					position: absolute;
+					left: 2rem;
+				}
+			}
+			.note-title {
+				padding: 1rem;
+			}
+			.note-content {
+				padding: 1rem;
 			}
 		}
 	}

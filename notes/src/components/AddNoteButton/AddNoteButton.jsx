@@ -1,4 +1,5 @@
 import "./AddNoteButton.css";
+import plusIcon from "../../assets/plus.svg";
 
 export default function AddNoteButton({ handleAddNote }) {
 	return (
@@ -6,7 +7,7 @@ export default function AddNoteButton({ handleAddNote }) {
 			<button
 				type="button"
 				onClick={handleAddNote}>
-				<img src="src/assets/plus.svg" />
+				<img src={plusIcon} />
 				Add Note
 			</button>
 		</>

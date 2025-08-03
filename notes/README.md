@@ -13,8 +13,8 @@ V Note should be saved to local storage on "blur" event.
 V When clicking on one of the notes the information of that note should be displayed on the form, and should be saved on blur.
 V After saving show the "Saved!" indication.
 V The note name on the list should be the title.
-- Build the Note app responsive UI, try and break down the UI to small components as much as you can.
-- Build the routing, make sure to notice the difference between the mobile version and the desktop version.
+V Build the Note app responsive UI, try and break down the UI to small components as much as you can.
+V Build the routing, make sure to notice the difference between the mobile version and the desktop version.
 
 ### v2.0 - 12/8
 

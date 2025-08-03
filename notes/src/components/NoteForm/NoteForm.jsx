@@ -1,4 +1,4 @@
-import { useState, useEffect ,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./NoteForm.css";
 import SavedNotification from "../SavedNotifacation/SavedNotification";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
@@ -15,7 +15,6 @@ export default function NoteForm({
 	const [formData, setFormData] = useState({ title: "", content: "" });
 	const navigate = useNavigate();
 	const isDesktop = useContext(WindowContext);
-
 
 	useEffect(() => {
 		if (activeNote)
@@ -40,13 +39,17 @@ export default function NoteForm({
 					setIsSaved={setIsSaved}
 				/>
 				<div className={"note-form"}>
-					<span>
-						{!isDesktop && <img
-							src={leftArrowIcon}
-							className="left-arrow-icon"
-							onClick={()=>navigate("/")}
-						/>}
-					</span>
+					{!isDesktop && (
+						<div className="app-name">
+							<img
+								src={leftArrowIcon}
+								className="left-arrow-icon"
+								onClick={() => navigate("/")}
+							/>
+							<h1>My Notes App</h1>
+						</div>
+					)}
+
 					<div className="note-title">
 						<label htmlFor="title">Title</label>
 						<input

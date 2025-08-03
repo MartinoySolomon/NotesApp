@@ -26,3 +26,28 @@
 		overflow-x: hidden;
 	}
 }
+@media (max-width: 780px) {
+	.side-bar {
+		width: 100%;
+		margin: 0 auto;
+		padding: 0;
+		box-shadow: none;
+		background-color: #ffffff;
+		.app-name {
+					margin-bottom: 0;
+			width: 100%;
+			text-align: center;
+			padding: 1rem;
+			border-bottom: 1px solid #4e61f6;
+		}
+		.add-note-button{
+			margin:0.5rem 0;
+			padding: 1rem;
+		}
+		.note-list {
+			padding: 1rem;
+			background-color: var(--background-color);
+			border-radius: 10px;
+		}
+	}
+}
