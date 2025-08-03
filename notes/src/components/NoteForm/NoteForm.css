@@ -5,6 +5,12 @@
 	justify-content: center;
 	align-items: start;
 
+	.left-arrow-icon{
+		/* width: 1rem;
+		height: 1rem;
+		margin: 1rem; */
+		cursor: pointer;
+	}
 	.note-form {
 		padding: 2rem;
 		margin: 4rem;

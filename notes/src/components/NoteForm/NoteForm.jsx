@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect ,useContext } from "react";
 import "./NoteForm.css";
-import { useEffect } from "react";
 import SavedNotification from "../SavedNotifacation/SavedNotification";
+import WindowContext from "../../contexts/WindowContext/WindowContext";
+import leftArrowIcon from "../../assets/left-arrow.svg";
+import { useNavigate } from "react-router";
 
 export default function NoteForm({
 	activeNoteId,
@@ -11,6 +13,9 @@ export default function NoteForm({
 	setIsSaved,
 }) {
 	const [formData, setFormData] = useState({ title: "", content: "" });
+	const navigate = useNavigate();
+	const isDesktop = useContext(WindowContext);
+
 
 	useEffect(() => {
 		if (activeNote)
@@ -35,6 +40,13 @@ export default function NoteForm({
 					setIsSaved={setIsSaved}
 				/>
 				<div className={"note-form"}>
+					<span>
+						{!isDesktop && <img
+							src={leftArrowIcon}
+							className="left-arrow-icon"
+							onClick={()=>navigate("/")}
+						/>}
+					</span>
 					<div className="note-title">
 						<label htmlFor="title">Title</label>
 						<input

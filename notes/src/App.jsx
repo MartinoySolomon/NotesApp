@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import "./App.css";
 
-
 import NoteForm from "./components/NoteForm/NoteForm";
 import Home from "./components/Home/Home";
+import { BrowserRouter, Routes, Route } from "react-router";
+import WindowContext from "./contexts/WindowContext/WindowContext";
 
 function App() {
 	const [notes, setNotes] = useState(() => fetchNotesFromStorage());
 	const [activeNoteId, setActiveNoteId] = useState(null);
 	const [isSaved, setIsSaved] = useState(false);
+	const isDesktop= useContext(WindowContext);
 
 	function fetchNotesFromStorage() {
 		const storedNotes = localStorage.getItem("notes");
@@ -51,19 +53,53 @@ function App() {
 
 	return (
 		<>
-				<Home
-					notes={notes}
-					handleAddNote={handleAddNote}
-					activeNoteId={activeNoteId}
-					setActiveNoteId={setActiveNoteId}
-				/>
-				<NoteForm
-					activeNoteId={activeNoteId}
-					activeNote={getActiveNote()}
-					handleUpdateNote={handleUpdateNote}
-					isSaved={isSaved}
-					setIsSaved={setIsSaved}
-				/>
+			<BrowserRouter>
+				{isDesktop ? (
+					<>
+						<Home
+							notes={notes}
+							handleAddNote={handleAddNote}
+							activeNoteId={activeNoteId}
+							setActiveNoteId={setActiveNoteId}
+						/>
+						<NoteForm
+							activeNoteId={activeNoteId}
+							activeNote={getActiveNote()}
+							handleUpdateNote={handleUpdateNote}
+							isSaved={isSaved}
+							setIsSaved={setIsSaved}
+						/>
+					</>
+				) : (
+					<>
+						<Routes>
+							<Route
+								path="/"
+								element={
+									<Home
+										notes={notes}
+										handleAddNote={handleAddNote}
+										activeNoteId={activeNoteId}
+										setActiveNoteId={setActiveNoteId}
+									/>
+								}
+							/>
+							<Route
+								path="edit/:noteId"
+								element={
+									<NoteForm
+										activeNoteId={activeNoteId}
+										activeNote={getActiveNote()}
+										handleUpdateNote={handleUpdateNote}
+										isSaved={isSaved}
+										setIsSaved={setIsSaved}
+									/>
+								}
+							/>
+						</Routes>
+					</>
+				)}
+			</BrowserRouter>
 		</>
 	);
 }

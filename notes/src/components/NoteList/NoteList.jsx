@@ -1,6 +1,5 @@
 import "./NoteList.css";
 import NoteItem from "../NoteItem/NoteItem";
-import { NavLink } from "react-router";
 
 export default function NoteList({ notes, activeNoteId, setActiveNoteId }) {
 	return (
