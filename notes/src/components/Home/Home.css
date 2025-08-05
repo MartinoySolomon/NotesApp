@@ -34,17 +34,18 @@
 		box-shadow: none;
 		background-color: #ffffff;
 		.app-name {
-					margin-bottom: 0;
+			margin-bottom: 0;
 			width: 100%;
 			text-align: center;
 			padding: 1rem;
 			border-bottom: 1px solid #4e61f6;
 		}
-		.add-note-button{
-			margin:0.5rem 0;
+		.add-note-button {
+			margin: 0.5rem 0;
 			padding: 1rem;
 		}
 		.note-list {
+			width:90%;
 			padding: 1rem;
 			background-color: var(--background-color);
 			border-radius: 10px;

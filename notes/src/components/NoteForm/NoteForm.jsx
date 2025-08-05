@@ -38,7 +38,7 @@ export default function NoteForm({
 					isSaved={isSaved}
 					setIsSaved={setIsSaved}
 				/>
-				<div className={"note-form"}>
+				<div className={`note-form ${!activeNote && "disabled"}`}>
 					{!isDesktop && (
 						<div className="app-name">
 							<img
@@ -60,7 +60,6 @@ export default function NoteForm({
 							value={formData.title}
 							onChange={onInputChange}
 							onBlur={onBlur}
-							disabled={!activeNote}
 						/>
 					</div>
 					<div className="note-content">
@@ -73,7 +72,6 @@ export default function NoteForm({
 							value={formData.content}
 							onChange={onInputChange}
 							onBlur={onBlur}
-							disabled={!activeNote}
 						/>
 					</div>
 				</div>
