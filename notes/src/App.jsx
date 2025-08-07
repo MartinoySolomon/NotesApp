@@ -29,7 +29,7 @@ function App() {
 			id: uuid(),
 			title: "",
 			content: "",
-			priority:"low",
+			priority:"Low",
 		};
 		setNotes((prev) => [...prev, newNote]);
 		setActiveNoteId(newNote.id);

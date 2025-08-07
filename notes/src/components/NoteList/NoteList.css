@@ -1,0 +1,5 @@
+.note-list-priority {
+    margin:1.5rem 0;
+	background-color: var(--background-color);
+	border-radius: 10px;
+}

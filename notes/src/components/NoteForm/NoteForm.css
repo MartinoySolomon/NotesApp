@@ -37,8 +37,13 @@
 			height: 2.5rem;
 			cursor: pointer;
 		}
-		::picker(select) {
-			border: none;
+
+		select {
+			appearance: none;
+			background-image: url("../../assets/down-arrow.svg");
+			background-repeat: no-repeat;
+			background-position: right 0.75rem center;
+			background-size: 0.8rem;
 		}
 
 		.note-title,

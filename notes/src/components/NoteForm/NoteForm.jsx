@@ -12,18 +12,27 @@ export default function NoteForm({
 	isSaved,
 	setIsSaved,
 }) {
-	const [formData, setFormData] = useState({ title: "", content: "" });
+	const [formData, setFormData] = useState({
+		title: "",
+		priority: "",
+		content: "",
+	});
 	const navigate = useNavigate();
 	const isDesktop = useContext(WindowContext);
 
 	useEffect(() => {
 		if (activeNote)
-			setFormData({ title: activeNote.title, content: activeNote.content });
-		else setFormData({ title: "", content: "" });
+			setFormData({
+				title: activeNote.title,
+				priority: activeNote.priority,
+				content: activeNote.content,
+			});
+		else setFormData({ title: "", priority: "", content: "" });
 	}, [activeNoteId]);
 
 	function onInputChange(e) {
 		const { name, value } = e.target;
+
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	}
 	function onBlur() {
@@ -67,20 +76,14 @@ export default function NoteForm({
 						<select
 							id="priority"
 							name="priority"
-							value={activeNote ? activeNote.priority : "low"}
-							onChange={(e) => {
-								const updatedNote = {
-									...activeNote,
-									priority: e.target.value,
-								};
-								handleUpdateNote(updatedNote);
-							}}>
-							<option value="low">Low</option>
-							<option value="medium">Medium</option>
-							<option value="high">High</option>
-							</select>
-
-	
+							value={formData.priority}
+							onBlur={onBlur}
+							onChange={onInputChange}
+							>
+							<option value="Low">Low</option>
+							<option value="Medium">Medium</option>
+							<option value="High">High</option>
+						</select>
 					</div>
 					<div className="note-content">
 						<label htmlFor="content">Note</label>
