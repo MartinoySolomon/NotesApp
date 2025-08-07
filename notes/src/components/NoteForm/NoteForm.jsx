@@ -62,6 +62,26 @@ export default function NoteForm({
 							onBlur={onBlur}
 						/>
 					</div>
+					<div className="note-priority">
+						<label htmlFor="priority">Priority</label>
+						<select
+							id="priority"
+							name="priority"
+							value={activeNote ? activeNote.priority : "low"}
+							onChange={(e) => {
+								const updatedNote = {
+									...activeNote,
+									priority: e.target.value,
+								};
+								handleUpdateNote(updatedNote);
+							}}>
+							<option value="low">Low</option>
+							<option value="medium">Medium</option>
+							<option value="high">High</option>
+							</select>
+
+	
+					</div>
 					<div className="note-content">
 						<label htmlFor="content">Note</label>
 
