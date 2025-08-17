@@ -20,8 +20,8 @@ V Build the routing, make sure to notice the difference between the mobile versi
 
 #### Features
 
-- Add priority to the input options with the values low, medium and high
-- Sort the notes by priority
+V Add priority to the input options with the values low, medium and high
+V Sort the notes by priority
 
 ### v2.1 - 26/8
 
