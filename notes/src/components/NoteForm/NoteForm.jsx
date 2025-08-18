@@ -3,7 +3,7 @@ import "./NoteForm.css";
 import SavedNotification from "../SavedNotifacation/SavedNotification";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
 import leftArrowIcon from "../../assets/left-arrow.svg";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 export default function NoteForm({
 	activeNoteId,
@@ -19,8 +19,12 @@ export default function NoteForm({
 	});
 	const navigate = useNavigate();
 	const isDesktop = useContext(WindowContext);
+	const params = useParams();
 
 	useEffect(() => {
+		if (params.noteId  && !activeNoteId) {
+			navigate("/");
+		}
 		if (activeNote)
 			setFormData({
 				title: activeNote.title,
@@ -78,8 +82,7 @@ export default function NoteForm({
 							name="priority"
 							value={formData.priority}
 							onBlur={onBlur}
-							onChange={onInputChange}
-							>
+							onChange={onInputChange}>
 							<option value="Low">Low</option>
 							<option value="Medium">Medium</option>
 							<option value="High">High</option>

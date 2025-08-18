@@ -13,10 +13,18 @@
 			font-size: 1.5rem;
 		}
 	}
-	.add-note-button {
-		align-self: self-end;
-		font-weight: 700;
-		margin: 2rem 0;
+	.add-note-container {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.loader-container {
+			margin: 0 auto;
+		}
+		.add-note-button {
+			font-weight: 700;
+			margin: 2rem 0;
+		}
 	}
 	.note-list {
 		display: flex;
@@ -45,9 +53,9 @@
 			padding: 1rem;
 		}
 		.note-list {
-			width:95%;
+			width: 95%;
 			padding: 1rem;
-			background-color:#ffffff;
+			background-color: #ffffff;
 			border-radius: 10px;
 		}
 	}
