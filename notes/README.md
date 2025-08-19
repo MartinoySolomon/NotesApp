@@ -27,7 +27,7 @@ V Sort the notes by priority
 
 #### Features
 
-- Save to firebase instead of localstorage
+V Save to firebase instead of localstorage
 
 ### v3.0 - 9/9
 

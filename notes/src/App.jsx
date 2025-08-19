@@ -9,6 +9,7 @@ import {
 	doc,
 	setDoc,
 	updateDoc,
+	deleteDoc,
 } from "firebase/firestore";
 
 import NoteForm from "./components/NoteForm/NoteForm";
@@ -29,8 +30,8 @@ function App() {
 
 	useEffect(() => {
 		const loadNotes = async () => {
+			setIsLoading(true);
 			try {
-				setIsLoading(true);
 				const notesArray = await fetchNotesFromFirebsae();
 				setNotes(notesArray);
 			} catch (error) {
@@ -69,8 +70,8 @@ function App() {
 			content: "",
 			priority: "Low",
 		};
+		setIsLoading(true);
 		try {
-			setIsLoading(true);
 			const newNoteRef = doc(db, "notes", newNoteId);
 			await setDoc(newNoteRef, newNoteData);
 			const updatedNotes = await fetchNotesFromFirebsae();
@@ -101,6 +102,21 @@ function App() {
 		}
 	}
 
+	async function handleDeleteNote(noteId) {
+		const noteDocRef = doc(db, "notes", noteId);
+		setIsLoading(true);
+		try {
+			await deleteDoc(noteDocRef);
+			const updateNotesArray = await fetchNotesFromFirebsae();
+			setNotes(updateNotesArray);
+			setActiveNoteId(null);
+		} catch (error) {
+			console.error("Error deleting note:", error);
+			return;
+		} finally {
+			setIsLoading(false);
+		}
+	}
 	return (
 		<>
 			<BrowserRouter>
@@ -119,8 +135,10 @@ function App() {
 							handleUpdateNote={handleUpdateNote}
 							isSaved={isSaved}
 							setIsSaved={setIsSaved}
-					
-						/>
+							setActiveNoteId={setActiveNoteId}
+							handleDeleteNote={handleDeleteNote}
+							isLoading={isLoading}
+							/>
 					</>
 				) : (
 					<>
@@ -129,26 +147,29 @@ function App() {
 								path="/"
 								element={
 									<Home
-										notes={notes}
-										handleAddNote={handleAddNote}
-										activeNoteId={activeNoteId}
-										setActiveNoteId={setActiveNoteId}
+									notes={notes}
+									handleAddNote={handleAddNote}
+									activeNoteId={activeNoteId}
+									setActiveNoteId={setActiveNoteId}
 										isLoading={isLoading}
+										/>
+									}
 									/>
-								}
-							/>
 							<Route
 								path="edit/:noteId"
 								element={
 									<NoteForm
-										activeNoteId={activeNoteId}
-										activeNote={getActiveNote()}
-										handleUpdateNote={handleUpdateNote}
-										isSaved={isSaved}
-										setIsSaved={setIsSaved}
+									activeNoteId={activeNoteId}
+									activeNote={getActiveNote()}
+									handleUpdateNote={handleUpdateNote}
+									isSaved={isSaved}
+									setIsSaved={setIsSaved}
+									setActiveNoteId={setActiveNoteId}
+									handleDeleteNote={handleDeleteNote}
+									isLoading={isLoading}
 									/>
 								}
-							/>
+								/>
 						</Routes>
 					</>
 				)}

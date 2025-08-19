@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import "./NoteForm.css";
 import SavedNotification from "../SavedNotifacation/SavedNotification";
+import Loader from "../Loader/Loader";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
 import leftArrowIcon from "../../assets/left-arrow.svg";
+import trashcanIcon from "../../assets/trashcan.svg";
 import { useNavigate, useParams } from "react-router";
 
 export default function NoteForm({
@@ -11,6 +13,9 @@ export default function NoteForm({
 	handleUpdateNote,
 	isSaved,
 	setIsSaved,
+	setActiveNoteId,
+	handleDeleteNote,
+	isLoading,
 }) {
 	const [formData, setFormData] = useState({
 		title: "",
@@ -22,8 +27,8 @@ export default function NoteForm({
 	const params = useParams();
 
 	useEffect(() => {
-		if (params.noteId  && !activeNoteId) {
-			navigate("/");
+		if (params.noteId && !activeNoteId) {
+			setActiveNoteId(params.noteId);
 		}
 		if (activeNote)
 			setFormData({
@@ -32,7 +37,7 @@ export default function NoteForm({
 				content: activeNote.content,
 			});
 		else setFormData({ title: "", priority: "", content: "" });
-	}, [activeNoteId]);
+	}, [activeNoteId, activeNote, params.noteId]);
 
 	function onInputChange(e) {
 		const { name, value } = e.target;
@@ -99,6 +104,23 @@ export default function NoteForm({
 							onChange={onInputChange}
 							onBlur={onBlur}
 						/>
+					</div>
+					<div className="note-delete-button">
+						<img
+							src={trashcanIcon}
+							onClick={async () => {
+								await handleDeleteNote(activeNoteId);
+								if (params.noteId) navigate("/");
+							}}
+							alt="Delete"
+						/>
+						{isLoading && !isDesktop && (
+							<>
+								<div>
+									<Loader />
+								</div>
+							</>
+						)}
 					</div>
 				</div>
 			</div>

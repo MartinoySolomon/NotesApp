@@ -1,5 +1,5 @@
 .loader {
-	width: 60px;
+	width: 50px;
 	aspect-ratio: 2;
 	--_g: no-repeat
 		radial-gradient(circle closest-side, var(--button-color) 90%, #00000000);
