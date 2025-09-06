@@ -12,7 +12,6 @@ import {
 	where,
 } from "firebase/firestore";
 import UserContext from "../UserContext/UserContext";
-import WindowContext from "../WindowContext/WindowContext";
 
 const NotesContext = createContext();
 
@@ -22,7 +21,6 @@ export function NotesProvider({ children }) {
 	const [isSaved, setIsSaved] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const { activeUser } = useContext(UserContext);
-	const isDesktop = useContext(WindowContext);
 
 	const getActiveNote = () => {
 		return notes.find((note) => note.id === activeNoteId);

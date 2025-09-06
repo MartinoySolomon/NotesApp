@@ -1,12 +1,14 @@
 import React, { useRef, useContext } from "react";
 import UserContext from "../../contexts/UserContext/UserContext";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
+import ModalContext from "../../contexts/ModalContext/ModalContext";
 import "./AddUser.css";
 
 export default function AddUser() {
 	const inputRef = useRef(null);
 	const { handleAddUser } = useContext(UserContext);
 	const isDesktop = useContext(WindowContext);
+	const { closeModal } = useContext(ModalContext);
 
 	return (
 		<>
@@ -29,6 +31,7 @@ export default function AddUser() {
 						if (userName) {
 							handleAddUser(userName);
 							inputRef.current.value = "";
+							closeModal();
 						}
 					}}>
 					Add

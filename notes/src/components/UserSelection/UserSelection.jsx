@@ -10,7 +10,7 @@ import plusIcon from "../../assets/plus.svg";
 export default function UserSelection() {
 	const { users, activeUser, setActiveUser } = useContext(UserContext);
 	const isDesktop = useContext(WindowContext);
-	const { openModal } = useContext(ModalContext);
+	const { openModal, closeModal } = useContext(ModalContext);
 	return (
 		<>
 			<div className="user-selection">
@@ -37,7 +37,10 @@ export default function UserSelection() {
 								className={`user-item ${
 									activeUser && activeUser.id === user.id ? "active" : ""
 								}`}
-								onClick={() => setActiveUser(user)}>
+								onClick={() => {
+									setActiveUser(user);
+									closeModal();
+								}}>
 								{user.name}
 								<img src={rightArrowIcon} />
 							</div>
