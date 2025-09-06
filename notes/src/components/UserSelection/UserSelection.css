@@ -14,13 +14,15 @@ h6 {
 }
 .user-selection {
 	.users-list {
+		margin: 1rem 0;
 		background-color: var(--background-color);
-
+		border-radius: 10px;
 		.user-item {
+			padding: 1rem 0.5rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin: 1rem;
+			margin: 0.5rem;
 			font-size: 1rem;
 			font-weight: 400;
 			height: 2.5rem;

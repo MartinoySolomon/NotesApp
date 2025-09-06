@@ -3,23 +3,14 @@ import "./NoteForm.css";
 import SavedNotification from "../SavedNotifacation/SavedNotification";
 import Loader from "../Loader/Loader";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
+import NotesContext from "../../contexts/NotesContext/NotesContext";
 import leftArrowIcon from "../../assets/left-arrow.svg";
 import trashcanIcon from "../../assets/trashcan.svg";
 import { useNavigate, useParams } from "react-router";
 import UserDisplay from "../UserDisplay/UserDisplay";
 import UserContext from "../../contexts/UserContext/UserContext";
 
-export default function NoteForm({
-	activeNoteId,
-	activeNote,
-	handleUpdateNote,
-	isSaved,
-	setIsSaved,
-	setActiveNoteId,
-	handleDeleteNote,
-	isLoading,
-	notes,
-}) {
+export default function NoteForm() {
 	const [formData, setFormData] = useState({
 		title: "",
 		priority: "",
@@ -29,13 +20,28 @@ export default function NoteForm({
 	const isDesktop = useContext(WindowContext);
 	const params = useParams();
 	const { activeUser, setActiveUser } = useContext(UserContext);
+	const {
+		activeNoteId,
+		setActiveNoteId,
+		getActiveNote,
+		handleUpdateNote,
+		isSaved,
+		setIsSaved,
+		handleDeleteNote,
+		isLoading,
+		notes,
+	} = useContext(NotesContext);
+
+	const activeNote = getActiveNote();
 
 	useEffect(() => {
 		if (params.noteId && !activeNoteId) {
 			setActiveNoteId(params.noteId);
+			console.log("if (params.noteId && !activeNoteId)");
 		}
 		if (activeNote && !activeUser) {
 			setActiveUser(activeNote.userId);
+			console.log("if (activeNote && !activeUser)");
 		}
 		if (activeNote) {
 			setFormData({
@@ -43,8 +49,9 @@ export default function NoteForm({
 				priority: activeNote.priority,
 				content: activeNote.content,
 			});
+			console.log("if (activeNote)");
 		} else setFormData({ title: "", priority: "", content: "" });
-	}, [activeNoteId, activeNote, params.noteId, activeUser]);
+	}, [activeNoteId, activeNote, params.noteId, activeUser,notes]);
 
 	function onInputChange(e) {
 		const { name, value } = e.target;
@@ -67,7 +74,7 @@ export default function NoteForm({
 							className="left-arrow-icon"
 							onClick={() => navigate("/")}
 						/>
-						<h1>{activeNote.title || "New Note"}</h1>
+						<h1>{activeNote?.title || "New Note"}</h1>
 					</div>
 				)}
 				<div className={`note-form ${!activeNote && "disabled"}`}>

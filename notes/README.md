@@ -33,7 +33,7 @@ V Save to firebase instead of localstorage
 
 #### Features
 
-- Add users support, each user should have a seperate list.
-- You can create a user using the users modal, the modal should show the users list as well as allow to create a new user.
-- Notice the difference in flow between the mobile version and the desktop version.
-- On the desktop version notice the user indication on the top right corner, this should show the current user
+V Add users support, each user should have a seperate list.
+V You can create a user using the users modal, the modal should show the users list as well as allow to create a new user.
+V Notice the difference in flow between the mobile version and the desktop version.
+V On the desktop version notice the user indication on the top right corner, this should show the current user

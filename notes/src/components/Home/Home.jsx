@@ -4,18 +4,15 @@ import Loader from "../Loader/Loader";
 import "./Home.css";
 import { useContext } from "react";
 import WindowContext from "../../contexts/WindowContext/WindowContext";
+import NotesContext from "../../contexts/NotesContext/NotesContext";
 import leftArrowIcon from "../../assets/left-arrow.svg";
 import UserContext from "../../contexts/UserContext/UserContext";
 
-export default function Home({
-	notes,
-	handleAddNote,
-	activeNoteId,
-	setActiveNoteId,
-	isLoading,
-}) {
+export default function Home() {
 	const isDesktop = useContext(WindowContext);
 	const { activeUser, setActiveUser } = useContext(UserContext);
+	const { notes, handleAddNote, activeNoteId, setActiveNoteId, isLoading } =
+		useContext(NotesContext);
 	return (
 		<>
 			<div className="side-bar">
