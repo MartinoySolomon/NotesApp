@@ -10,12 +10,16 @@ import {
 	setDoc,
 	updateDoc,
 	deleteDoc,
+	query,
+	where,
 } from "firebase/firestore";
 
 import NoteForm from "./components/NoteForm/NoteForm";
 import Home from "./components/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router";
 import WindowContext from "./contexts/WindowContext/WindowContext";
+import UserContext from "./contexts/UserContext/UserContext";
+import UserSelection from "./components/UserSelection/UserSelection";
 
 function App() {
 	const [notes, setNotes] = useState([]);
@@ -23,6 +27,7 @@ function App() {
 	const [isSaved, setIsSaved] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const isDesktop = useContext(WindowContext);
+	const { activeUser } = useContext(UserContext);
 
 	const getActiveNote = () => {
 		return notes.find((note) => note.id === activeNoteId);
@@ -42,12 +47,15 @@ function App() {
 			}
 		};
 		loadNotes();
-	}, []);
+		if (isDesktop) setActiveNoteId(null);
+	}, [activeUser]);
 
 	async function fetchNotesFromFirebsae() {
 		try {
+			if (!activeUser) return [];
 			const notesCollectionRef = collection(db, "notes");
-			const notesSnapshot = await getDocs(notesCollectionRef);
+			const q = query(notesCollectionRef, where("userId", "==", activeUser.id));
+			const notesSnapshot = await getDocs(q);
 			const notesList = notesSnapshot.docs.map((doc) => {
 				const noteData = doc.data();
 				const noteId = doc.id;
@@ -69,6 +77,7 @@ function App() {
 			title: "",
 			content: "",
 			priority: "Low",
+			userId: activeUser ? activeUser.id : null,
 		};
 		setIsLoading(true);
 		try {
@@ -76,6 +85,7 @@ function App() {
 			await setDoc(newNoteRef, newNoteData);
 			const updatedNotes = await fetchNotesFromFirebsae();
 			setNotes(updatedNotes);
+			setActiveNoteId(newNoteId);
 		} catch (error) {
 			console.error("Error adding note:", error);
 			return;
@@ -138,38 +148,48 @@ function App() {
 							setActiveNoteId={setActiveNoteId}
 							handleDeleteNote={handleDeleteNote}
 							isLoading={isLoading}
-							/>
+							notes={notes}
+						/>
 					</>
 				) : (
 					<>
 						<Routes>
-							<Route
-								path="/"
-								element={
-									<Home
-									notes={notes}
-									handleAddNote={handleAddNote}
-									activeNoteId={activeNoteId}
-									setActiveNoteId={setActiveNoteId}
-										isLoading={isLoading}
+							{!activeUser && (
+								<Route
+									path="/"
+									element={<UserSelection />}
+								/>
+							)}
+							{activeUser && (
+								<Route
+									path="/"
+									element={
+										<Home
+											notes={notes}
+											handleAddNote={handleAddNote}
+											activeNoteId={activeNoteId}
+											setActiveNoteId={setActiveNoteId}
+											isLoading={isLoading}
 										/>
 									}
-									/>
+								/>
+							)}
 							<Route
 								path="edit/:noteId"
 								element={
 									<NoteForm
-									activeNoteId={activeNoteId}
-									activeNote={getActiveNote()}
-									handleUpdateNote={handleUpdateNote}
-									isSaved={isSaved}
-									setIsSaved={setIsSaved}
-									setActiveNoteId={setActiveNoteId}
-									handleDeleteNote={handleDeleteNote}
-									isLoading={isLoading}
+										activeNoteId={activeNoteId}
+										activeNote={getActiveNote()}
+										handleUpdateNote={handleUpdateNote}
+										isSaved={isSaved}
+										setIsSaved={setIsSaved}
+										setActiveNoteId={setActiveNoteId}
+										handleDeleteNote={handleDeleteNote}
+										isLoading={isLoading}
+										notes={notes}
 									/>
 								}
-								/>
+							/>
 						</Routes>
 					</>
 				)}

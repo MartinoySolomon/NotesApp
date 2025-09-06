@@ -1,29 +1,41 @@
-button {
-	background-color: var(--button-color);
-	border: none;
-	color: #ffffff;
-	border-radius: 10px;
-	padding: 10px 20px;
-	font-size: 0.875rem;
-	font-weight: 500;
-	width: 8.5rem;
-	height: 2.5rem;
-	align-self: self-end;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
+.add-note-button {
+	font-weight: 700;
+	margin: 2rem 0;
+	button {
+		background-color: var(--button-color);
+		border: none;
+		color: #ffffff;
+		border-radius: 10px;
+		padding: 10px 20px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		width: 8.5rem;
+		height: 2.5rem;
+		align-self: self-end;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
 
-	img {
-		margin-right: 10px;
-		width: 0.875rem;
+		img {
+			margin-right: 10px;
+			width: 0.875rem;
+		}
 	}
 }
+.disabled{
+	opacity: 0.5;
+	pointer-events: none;
+}
 @media (max-width: 780px) {
-	button {
-		height: 3rem;
-		width: 10rem;
-		img {
-		margin-right: 20px;
+	.add-note-button {
+		margin: 0.5rem 0;
+		padding: 1rem;
+		button {
+			height: 3rem;
+			width: 10rem;
+			img {
+				margin-right: 20px;
+			}
 		}
 	}
 }

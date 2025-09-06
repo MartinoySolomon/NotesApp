@@ -1,0 +1,39 @@
+.add-user {
+	display: flex;
+	input {
+		background-color: var(--background-color);
+		border: #e5e7ea 1px solid;
+		border-radius: 8px;
+		color: var(--secondary-color);
+		width: 100%;
+		padding: 0.5rem;
+		height: 2.5rem;
+		cursor: pointer;
+		align-self: stretch;
+	}
+	button {
+		background-color: var(--button-color);
+		border: none;
+		color: #ffffff;
+		border-radius: 12px;
+		width: 8rem;
+		height: 2.5rem;
+		margin-left: 0.5rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+	}
+}
+@media (max-width: 780px) {
+	.add-user {
+		/* padding:2rem; */
+		flex-direction: column;
+		input{
+			width: 100%;
+		}
+		button{
+			width: 100%;
+			margin: 0.5rem 0 0 0;
+		}
+	}
+}

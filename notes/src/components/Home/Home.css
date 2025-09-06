@@ -21,10 +21,6 @@
 		.loader-container {
 			margin: 0 auto;
 		}
-		.add-note-button {
-			font-weight: 700;
-			margin: 2rem 0;
-		}
 	}
 	.note-list {
 		display: flex;
@@ -37,6 +33,7 @@
 @media (max-width: 780px) {
 	.side-bar {
 		width: 100%;
+		height: 100%;
 		margin: 0 auto;
 		padding: 0;
 		box-shadow: none;
@@ -47,11 +44,18 @@
 			text-align: center;
 			padding: 1rem;
 			border-bottom: 1px solid #4e61f6;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			h1 {
+				font-size: 1.5rem;
+			}
+			.left-arrow-icon {
+				position: absolute;
+				left: 2rem;
+			}
 		}
-		.add-note-button {
-			margin: 0.5rem 0;
-			padding: 1rem;
-		}
+
 		.note-list {
 			width: 95%;
 			padding: 1rem;

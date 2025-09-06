@@ -6,6 +6,8 @@ import WindowContext from "../../contexts/WindowContext/WindowContext";
 import leftArrowIcon from "../../assets/left-arrow.svg";
 import trashcanIcon from "../../assets/trashcan.svg";
 import { useNavigate, useParams } from "react-router";
+import UserDisplay from "../UserDisplay/UserDisplay";
+import UserContext from "../../contexts/UserContext/UserContext";
 
 export default function NoteForm({
 	activeNoteId,
@@ -16,6 +18,7 @@ export default function NoteForm({
 	setActiveNoteId,
 	handleDeleteNote,
 	isLoading,
+	notes,
 }) {
 	const [formData, setFormData] = useState({
 		title: "",
@@ -25,19 +28,23 @@ export default function NoteForm({
 	const navigate = useNavigate();
 	const isDesktop = useContext(WindowContext);
 	const params = useParams();
+	const { activeUser, setActiveUser } = useContext(UserContext);
 
 	useEffect(() => {
 		if (params.noteId && !activeNoteId) {
 			setActiveNoteId(params.noteId);
 		}
-		if (activeNote)
+		if (activeNote && !activeUser) {
+			setActiveUser(activeNote.userId);
+		}
+		if (activeNote) {
 			setFormData({
 				title: activeNote.title,
 				priority: activeNote.priority,
 				content: activeNote.content,
 			});
-		else setFormData({ title: "", priority: "", content: "" });
-	}, [activeNoteId, activeNote, params.noteId]);
+		} else setFormData({ title: "", priority: "", content: "" });
+	}, [activeNoteId, activeNote, params.noteId, activeUser]);
 
 	function onInputChange(e) {
 		const { name, value } = e.target;
@@ -52,21 +59,22 @@ export default function NoteForm({
 	return (
 		<>
 			<div className="main">
-				<SavedNotification
-					isSaved={isSaved}
-					setIsSaved={setIsSaved}
-				/>
+				{isDesktop && <UserDisplay />}
+				{!isDesktop && (
+					<div className="app-name">
+						<img
+							src={leftArrowIcon}
+							className="left-arrow-icon"
+							onClick={() => navigate("/")}
+						/>
+						<h1>{activeNote.title || "New Note"}</h1>
+					</div>
+				)}
 				<div className={`note-form ${!activeNote && "disabled"}`}>
-					{!isDesktop && (
-						<div className="app-name">
-							<img
-								src={leftArrowIcon}
-								className="left-arrow-icon"
-								onClick={() => navigate("/")}
-							/>
-							<h1>My Notes App</h1>
-						</div>
-					)}
+					<SavedNotification
+						isSaved={isSaved}
+						setIsSaved={setIsSaved}
+					/>
 
 					<div className="note-title">
 						<label htmlFor="title">Title</label>

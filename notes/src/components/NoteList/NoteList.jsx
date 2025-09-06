@@ -1,7 +1,9 @@
 import "./NoteList.css";
 import NoteItem from "../NoteItem/NoteItem";
 
+
 export default function NoteList({ notes, activeNoteId, setActiveNoteId }) {
+
 	const highPriorityNotes = notes.filter((note) => note.priority === "High");
 	const mediumPriorityNotes = notes.filter(
 		(note) => note.priority === "Medium"
@@ -10,6 +12,7 @@ export default function NoteList({ notes, activeNoteId, setActiveNoteId }) {
 
 	return (
 		<>
+
 			{highPriorityNotes.length > 0 && (
 				<>
 					<h2>High Priority</h2>

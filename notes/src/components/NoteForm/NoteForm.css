@@ -2,16 +2,18 @@
 	width: 77%;
 	height: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: start;
+	align-items: center;
 
 	.left-arrow-icon {
 		cursor: pointer;
 	}
 	.note-form {
+		box-sizing: border-box;
 		padding: 2rem;
-		margin: 4rem;
-		width: 100%;
+		margin: 3rem;
+		align-self: stretch;
 		height: 80%;
 		display: flex;
 		flex-direction: column;
@@ -65,7 +67,7 @@
 			}
 		}
 		.note-delete-button {
-			width:100%;
+			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -87,28 +89,29 @@
 @media (max-width: 780px) {
 	.main {
 		width: 100%;
+		.app-name {
+			margin-bottom: 0;
+			width: 100%;
+			text-align: center;
+			padding: 1rem;
+			border-bottom: 1px solid #4e61f6;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			h1 {
+				font-size: 1.5rem;
+			}
+			.left-arrow-icon {
+				position: absolute;
+				left: 2rem;
+			}
+		}
 		.note-form {
 			box-shadow: none;
 			width: 100%;
 			height: 100%;
-			margin: 0 auto;
+			margin: 0;
 			padding: 0;
-			.app-name {
-				width: 100%;
-				text-align: center;
-				padding: 1rem;
-				border-bottom: 1px solid #4e61f6;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				h1 {
-					font-size: 1.5rem;
-				}
-				.left-arrow-icon {
-					position: absolute;
-					left: 2rem;
-				}
-			}
 			.note-title,
 			.note-priority,
 			.note-content {

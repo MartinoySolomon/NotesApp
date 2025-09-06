@@ -1,7 +1,5 @@
 .saved-notification {
-	position: absolute;
-	top: 6rem;
-	right: 6rem;
+	margin-left: auto;
 	font-weight: 200;
 	font-style: italic;
 	font-size: 0.875rem;
@@ -12,6 +10,7 @@
 }
 @media (max-width: 780px) {
 	.saved-notification {
+		position: absolute;
 		top: 5rem;
 		right: 1.5rem;
 	}
